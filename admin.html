@@ -30,9 +30,6 @@ button:hover{background:var(--deep)}
         <label>Pangalan ng Bisita</label>
         <input type="text" id="adminGuestName" required placeholder="Hal. Juan Dela Cruz">
 
-        <label>Email ng Bisita (Opsyonal)</label>
-        <input type="email" id="adminGuestEmail" placeholder="juandelacruz@email.com">
-
         <button type="submit">Generate Unique Link</button>
     </form>
 
@@ -49,20 +46,17 @@ const BACKEND_URL = 'https://wedding-invitation-vh7t.onrender.com';
 document.getElementById('generatorForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const guestName = document.getElementById('adminGuestName').value;
-    const guestEmail = document.getElementById('adminGuestEmail').value;
 
     try {
         const response = await fetch(`${BACKEND_URL}/api/admin/generate-token`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ guestName, guestEmail })
+            body: JSON.stringify({ guestName })
         });
 
         const data = await response.json();
         if (data.success && data.token) {
-            // Gumagamit ito ng live Netlify domain mo + token
             const fullLink = `https://aldringotcharm.netlify.app/?token=${data.token}`;
-            document.getElementById('resultLink.href').href = fullLink; // Wait, ayusin natin ang assignment
             document.getElementById('resultLink').href = fullLink;
             document.getElementById('resultLink').textContent = fullLink;
             document.getElementById('resultBox').style.display = 'block';

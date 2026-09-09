@@ -20,12 +20,13 @@ const guestSchema = new mongoose.Schema({
     token: { type: String, unique: true },
     deviceFingerprint: { type: String, default: null },
     attendance: { type: String, default: null },
+    guestEmail: { type: String, default: null },
     message: { type: String, default: '' },
     createdAt: { type: Date, default: Date.now }
 });
 const Guest = mongoose.model('Guest', guestSchema);
 
-// 2. ADMIN UI: Form para madaling makagawa ng link
+// 2. ADMIN UI: Built-in page para sa /admin/generate kung gugustuhin mo
 app.get('/admin/generate', (req, res) => {
     res.send(`
         <!DOCTYPE html>
@@ -50,20 +51,20 @@ app.get('/admin/generate', (req, res) => {
                 <form id="genForm">
                     <label>Guest Full Name:</label>
                     <input type="text" id="name" placeholder="Hal. Juan Dela Cruz" required>
-
                     <button type="submit">Create Link</button>
                 </form>
                 <div id="resultBox" class="result"></div>
             </div>
-
             <script>
                 document.getElementById('genForm').addEventListener('submit', async (e) => {
                     e.preventDefault();
                     const name = document.getElementById('name').value;
-
-                    const res = await fetch(\`/api/guest/add?name=\${encodeURIComponent(name)}\`);
+                    const res = await fetch(\`/api/admin/generate-token\`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ guestName: name })
+                    });
                     const data = await res.json();
-
                     const box = document.getElementById('resultBox');
                     if (data.success) {
                         box.style.display = 'block';
@@ -78,7 +79,34 @@ app.get('/admin/generate', (req, res) => {
     `);
 });
 
-// 3. API ENDPOINT: Pag-save ng bagong bisita at pag-generate ng link papunta sa iyong Netlify/Vercel frontend
+// 3. API ENDPOINT (Sinusuportahan na ang POST galing sa iyong Netlify admin.html)
+app.post('/api/admin/generate-token', async (req, res) => {
+    try {
+        const { guestName } = req.body;
+        if (!guestName) {
+            return res.status(400).json({ success: false, message: 'Ibigay ang pangalan ng bisita.' });
+        }
+
+        const token = crypto.randomBytes(16).toString('hex');
+        const newGuest = new Guest({ guestName, token });
+        await newGuest.save();
+
+        // Nakaturo na sa iyong live Netlify frontend URL
+        const frontendUrl = "https://aldringotcharm.netlify.app/"; 
+        const uniqueLink = `${frontendUrl}?token=${token}`;
+        
+        res.status(200).json({
+            success: true,
+            message: `Na-generate na ang link para kay ${guestName}!`,
+            token: token,
+            uniqueLink: uniqueLink
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Support din kung GET ang gamitin sa /api/guest/add
 app.get('/api/guest/add', async (req, res) => {
     try {
         const { name } = req.query;
@@ -90,8 +118,7 @@ app.get('/api/guest/add', async (req, res) => {
         const newGuest = new Guest({ guestName: name, token });
         await newGuest.save();
 
-        // PALITAN ITO mamaya ng iyong live frontend URL galing Netlify/Vercel (hal. https://aldrin-charm.netlify.app/wedding.html)
-        const frontendUrl = "http://127.0.0.1:5500/wedding.html"; 
+        const frontendUrl = "https://aldringotcharm.netlify.app/"; 
         const uniqueLink = `${frontendUrl}?token=${token}`;
         
         res.status(200).json({
@@ -221,7 +248,6 @@ app.get('/api/rsvp/list', async (req, res) => {
     }
 });
 
-// Paggamit ng PORT galing sa Cloud Hosting o kaya ay 3000 kapag nasa lokal pa
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('Server running on port ' + PORT);

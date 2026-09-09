@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Link Generator | Aldrin & Charm</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root{--dusty-blue:#8faec2;--dusty-dark:#4b718a;--bg-light:#f4f8fb;--deep:#2c4a5c;}
+*{box-sizing:border-box}
+body{margin:0;padding:20px;background:var(--bg-light);color:var(--deep);font-family:Montserrat,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.admin-card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 10px 30px rgba(44,74,92,0.1);width:100%;max-width:500px;border:1px solid rgba(143,174,194,0.4)}
+h1{font-size:24px;margin-bottom:5px;color:var(--deep)}
+p{font-size:12px;color:var(--dusty-dark);margin-bottom:20px}
+label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin:10px 0 4px;color:var(--deep);font-weight:600}
+input{width:100%;padding:10px;border:1px solid #cbdde8;border-radius:6px;font-size:12px;margin-bottom:12px}
+button{width:100%;padding:12px;background:var(--dusty-dark);color:#fff;border:none;border-radius:6px;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600}
+button:hover{background:var(--deep)}
+#resultBox{margin-top:20px;display:none;background:#eaf2f7;padding:15px;border-radius:6px;word-break:break-all}
+#resultLink{font-size:11px;color:var(--deep);font-weight:500;margin-bottom:10px;display:block}
+.copy-btn{background:var(--dusty-blue);padding:8px;font-size:10px}
+</style>
+</head>
+<body>
+
+<div class="admin-card">
+    <h1>Guest Link Generator</h1>
+    <p>Gumawa ng unique at secure na imbitasyon para sa bawat bisita.</p>
+    
+    <form id="generatorForm">
+        <label>Pangalan ng Bisita</label>
+        <input type="text" id="adminGuestName" required placeholder="Hal. Juan Dela Cruz">
+
+        <label>Email ng Bisita (Opsyonal)</label>
+        <input type="email" id="adminGuestEmail" placeholder="juandelacruz@email.com">
+
+        <button type="submit">Generate Unique Link</button>
+    </form>
+
+    <div id="resultBox">
+        <label>Generated Link:</label>
+        <a id="resultLink" href="#" target="_blank"></a>
+        <button type="button" class="copy-btn" onclick="copyLink()">Kopyahin ang Link</button>
+    </div>
+</div>
+
+<script>
+const BACKEND_URL = 'https://wedding-invitation-vh7t.onrender.com';
+
+document.getElementById('generatorForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const guestName = document.getElementById('adminGuestName').value;
+    const guestEmail = document.getElementById('adminGuestEmail').value;
+
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/admin/generate-token`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ guestName, guestEmail })
+        });
+
+        const data = await response.json();
+        if (data.success && data.token) {
+            // Gumagamit ito ng live Netlify domain mo + token
+            const fullLink = `https://aldringotcharm.netlify.app/?token=${data.token}`;
+            document.getElementById('resultLink.href').href = fullLink; // Wait, ayusin natin ang assignment
+            document.getElementById('resultLink').href = fullLink;
+            document.getElementById('resultLink').textContent = fullLink;
+            document.getElementById('resultBox').style.display = 'block';
+        } else {
+            alert('May error sa pag-generate: ' + (data.error || 'Subukang muli.'));
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Hindi makakonekta sa Render backend server.');
+    }
+});
+
+function copyLink() {
+    const linkText = document.getElementById('resultLink').textContent;
+    navigator.clipboard.writeText(linkText).then(() => {
+        alert('Na-copy na ang link sa clipboard!');
+    });
+}
+</script>
+
+</body>
+</html>

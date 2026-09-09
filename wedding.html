@@ -1,453 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Aldrin & Charm | Wedding Invitation</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-:root{
-    --dusty-blue: #8faec2;
-    --dusty-dark: #4b718a;
-    --bg-light: #f4f8fb;
-    --white: #ffffff;
-    --gold: #bfa16f;
-    --deep: #2c4a5c;
-}
-
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg-light);color:var(--deep);font-family:Montserrat,Arial,sans-serif;visibility:hidden;}
-button,input,select,textarea{font:inherit}
-
-#pages-container{position:relative;width:100%;height:100%;overflow:hidden}
-.page-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;visibility:hidden;transition:opacity .6s ease, transform .6s ease;transform:translateY(20px);padding:25px;background:radial-gradient(circle at 50% 20%,#ffffff 0,#f2f6fa 50%,#e1ecf4 100%);overflow-y:auto}
-.page-slide.active{opacity:1;visibility:visible;transform:translateY(0);z-index:2}
-
-.flower-border{position:fixed;top:0;bottom:0;width:205px;z-index:20;pointer-events:none}.flower-border.left{left:0}.flower-border.right{right:0;transform:scaleX(-1)}.botanical{width:100%;height:100%}.stem{stroke:#6b92a8;stroke-width:2.2;fill:none}.branch{stroke:#8cb0c4;stroke-width:1.4;fill:none}.leaf{fill:#8cb0c4}.leaf2{fill:#b8d1e0}.tulip{fill:#98bace;stroke:#63899e;stroke-width:1}.tulip-hi{fill:#eaf2f7}.tiny{fill:#d6e6f0}
-
-.content{position:relative;z-index:2;width:min(950px,calc(100% - 220px));margin:auto}
-.script{font-family:'Great Vibes',cursive;color:var(--dusty-dark);font-size:clamp(45px,6.5vw,85px);line-height:1}
-.serif{font-family:'Cormorant Garamond',serif}
-.eyebrow{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--dusty-dark);margin-bottom:6px}
-.card{background:rgba(255,255,255,0.92);border:1px solid rgba(143,174,194,0.4);box-shadow:0 15px 40px rgba(44,74,92,0.08);backdrop-filter:blur(5px);border-radius:10px}
-
-.nav-buttons{position:fixed;bottom:25px;right:30px;z-index:30;display:flex;gap:10px}
-.nav-btn{background:var(--dusty-blue);color:#fff;border:none;padding:12px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;border-radius:6px;cursor:pointer;box-shadow:0 4px 15px rgba(75,113,138,0.25);transition:.2s}
-.nav-btn:hover{background:var(--dusty-dark);transform:translateY(-2px)}
-.nav-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none}
-
-/* Access Blocker / Prank Page */
-#access-blocker{position:fixed;inset:0;z-index:999;background:#fff5f5;display:none;align-items:center;justify-content:center;padding:20px}
-.blocker-card{background:#fff;padding:50px 40px;border-radius:16px;box-shadow:0 20px 50px rgba(220,38,38,0.15);width:90%;max-width:480px;text-align:center;border:1px solid #fee2e2}
-.blocker-card h1{font-size:clamp(36px, 5vw, 44px);color:#dc2626;margin:0 0 25px;font-weight:700;letter-spacing:1px}
-.verse-box{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.6;background:#f8fafc;padding:20px;border-radius:10px;color:#1f2937;border-left:4px solid #dc2626}
-
-#opening{position:fixed;inset:0;z-index:100;overflow:hidden;background:#8faec2;display:flex;align-items:center;justify-content:center;transition:visibility .2s}
-.curtain{position:absolute;inset:0;display:flex;z-index:2}
-.curtain-side{width:50%;height:100%;position:relative;background:linear-gradient(90deg,#5a8098,#9ec0d2 12%,#668c9f 28%,#b4d3e2 44%,#557a92 60%,#a2c4d6 78%,#4f758e);box-shadow:inset 0 0 50px rgba(30,55,70,0.25);transition:transform 1.8s cubic-bezier(.77,0,.18,1)}
-.curtain-side:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(255,255,255,.12) 28px 38px,rgba(35,65,85,.12) 46px 60px)}
-.curtain-side.left{transform-origin:left}.curtain-side.right{transform-origin:right}
-#opening.opened .curtain-side.left{transform:translateX(-101%)}
-#opening.opened .curtain-side.right{transform:translateX(101%)}
-.curtain-content{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);width:85%;text-align:center;color:#fff;text-shadow:0 2px 10px rgba(35,65,85,.3);transition:.6s}
-#opening.opened .curtain-content{opacity:0;transform:translate(-50%,-50%) scale(.92);pointer-events:none}
-.cover-kicker{font:clamp(12px, 1.5vw, 16px) Montserrat,sans-serif;letter-spacing:6px;text-transform:uppercase;margin-bottom:15px;color:#f0f6fa}
-.cover-names{font:clamp(65px,8.5vw,120px) 'Great Vibes',cursive;line-height:1;color:#fff}
-.cover-sub{font:clamp(18px,2.2vw,30px) 'Cormorant Garamond',serif;margin-top:18px;color:#eaf2f7}
-.open-btn{margin-top:30px;padding:16px 32px;min-width:280px;background:rgba(255,255,255,.25);border:1px solid #fff;color:#fff;letter-spacing:4px;font:11px Montserrat,sans-serif;cursor:pointer;border-radius:6px}
-.open-btn:hover{background:rgba(255,255,255,.4)}
-
-.hero-media-container{width:100%;max-width:560px;height:320px;margin:12px auto;display:flex;align-items:center;justify-content:center;position:relative;border-radius:10px;overflow:hidden;box-shadow:0 15px 35px rgba(44,74,92,0.2);background:#fff;border:1px solid rgba(143,174,194,0.4)}
-.hero-media-container video{width:100%;height:100%;object-fit:cover;border-radius:10px}
-.hero-names{font:clamp(45px,5vw,70px) 'Great Vibes',cursive;color:var(--dusty-dark);line-height:1;margin:4px 0}
-.hero-tagline{letter-spacing:4px;font-size:10px;text-transform:uppercase;color:var(--dusty-dark);margin-top:6px}
-
-.countdown{display:flex;justify-content:center;margin:15px auto;max-width:650px}.time{min-width:110px;padding:10px;border-right:1px solid #d4e2ec}.time:last-child{border:0}.time b{display:block;font:500 38px 'Cormorant Garamond';color:var(--deep)}.time span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dusty-dark)}
-
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:15px}.info{padding:20px 15px}.info h3{font:500 24px 'Cormorant Garamond';margin:6px 0;color:var(--deep)}.info p{font-size:12px;line-height:1.5;margin:0;color:var(--dusty-dark)}
-.map-buttons{display:flex;justify-content:center;gap:8px;margin-top:10px}
-.map-btn{display:inline-block;padding:6px 14px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--dusty-dark);border-radius:4px;text-decoration:none}
-.map-btn.waze{background:#73c9f4;color:#15354a}
-
-.combined-box{width:min(850px,100%);margin:auto;padding:25px;text-align:center}
-.program-flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:15px 0}
-.program-step-col{background:#eaf2f7;padding:16px 8px;border-radius:8px;border-top:4px solid var(--dusty-blue);box-shadow:0 4px 12px rgba(44,74,92,0.06)}
-.program-icon{font-size:26px;margin-bottom:6px}
-.program-time{font-weight:600;font-size:13px;color:var(--deep)}
-.program-lbl{font-size:10px;text-transform:uppercase;color:var(--dusty-dark);margin-top:4px;letter-spacing:0.5px}
-
-.attire-section-divider{margin:20px 0 10px;border-top:2px dashed rgba(143,174,194,0.6);padding-top:16px}
-.attire-img-container{width:100%;max-width:550px;height:270px;margin:12px auto;background-image:url('attire.jfif');background-size:contain;background-repeat:no-repeat;background-position:center;border-radius:8px;mix-blend-mode:multiply;}
-.no-white-warning{display:inline-block;margin-bottom:8px;padding:6px 16px;background:#fde8e8;color:#c53030;border:1px dashed #f56565;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:1.5px}
-
-.gallery-wrap{width:min(750px,90vw);margin:auto}.main-photo{height:320px;position:relative;overflow:hidden;border-radius:10px;box-shadow:0 12px 30px rgba(44,74,92,0.12);background-size:cover;background-position:center;transition:background-image 0.8s ease-in-out}.main-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(44,74,92,0.6) 0%, transparent 60%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px}.caption{color:white;font-size:11px;letter-spacing:2px;text-shadow:0 1px 4px var(--deep)}
-.nav{margin:10px}.nav button{width:32px;height:32px;border:1px solid #b5d0e2;background:#fff;border-radius:50%;cursor:pointer;color:var(--dusty-dark)}.thumbs{display:flex;justify-content:center;gap:6px}.thumb{width:55px;height:36px;border:2px solid transparent;background-size:cover;background-position:center;cursor:pointer;border-radius:4px}.thumb.active{border-color:var(--dusty-blue)}
-
-.gift-box{width:min(650px,100%);margin:auto;padding:25px;text-align:left}
-.gift-box h2{font:500 36px 'Cormorant Garamond';margin:4px 0 10px;color:var(--deep);text-align:center}
-.gift-desc{font-size:15px;line-height:1.8;color:var(--deep);margin-bottom:15px;text-align:center;padding:10px 20px;}
-
-.rsvp-box{width:min(620px,100%);margin:auto;padding:20px}
-.rsvp-box h2{font:500 34px 'Cormorant Garamond';margin:2px;color:var(--deep)}
-.policy{background:#eaf2f7;border-left:3px solid var(--dusty-blue);padding:10px;margin:10px 0;font-size:10px;line-height:1.4;text-align:left}
-
-.faq-box{background:rgba(244,248,251,0.95);border:1px solid rgba(143,174,194,0.4);padding:14px;border-radius:6px;margin-top:15px;text-align:left}
-.faq-question{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--deep);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.faq-answer{font-family:'Montserrat',sans-serif;font-size:9.5px;line-height:1.5;color:var(--dusty-dark)}
-
-label{display:block;text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin:8px 0 4px;color:var(--deep)}
-input,select,textarea{width:100%;border:1px solid #cbdde8;background:#fff;padding:10px;color:var(--deep);border-radius:4px;font-size:11px}
-textarea{min-height:45px}
-.submit{margin:15px auto 0;display:block;border:0;background:var(--dusty-dark);color:#fff;padding:12px 24px;font-size:10px;letter-spacing:2px;cursor:pointer;border-radius:4px}
-.success{display:none;padding:12px}
-
-.closing-box{width:min(700px,100%);margin:auto;padding:25px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.closing-logo-img{width:280px;height:280px;object-fit:contain;background:transparent;margin-bottom:2px}
-.closing-title{font-family:'Great Vibes',cursive;font-size:clamp(45px,6vw,65px);color:var(--dusty-dark);margin:0 0 2px;line-height:1}
-.closing-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,26px);color:var(--deep);margin:0 0 8px;font-weight:600}
-.closing-desc{font-family:'Montserrat',sans-serif;font-size:11px;line-height:1.5;color:var(--dusty-dark);margin-bottom:15px;max-width:480px}
-.closing-contacts{background:#eaf2f7;border:1px dashed var(--dusty-blue);padding:12px 20px;border-radius:10px;width:100%;max-width:420px;text-align:center;box-shadow:0 4px 12px rgba(44,74,92,0.05)}
-.closing-company{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--deep);margin-bottom:4px;letter-spacing:1px}
-.closing-info{font-family:'Montserrat',sans-serif;font-size:11px;color:var(--dusty-dark);margin:4px 0;font-weight:500}
-
-.brand{position:fixed;left:15px;bottom:12px;z-index:25;background:rgba(255,255,255,0.9);border-radius:20px;padding:6px 10px;font-size:7.5px;letter-spacing:1px;color:var(--dusty-dark);box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-
-@media(max-width:700px){.flower-border{width:75px}.content{width:calc(100% - 70px)}.info-grid{grid-template-columns:1fr;gap:8px}.time{min-width:60px}.time b{font-size:26px}.hero-media-container{height:220px}.main-photo{height:200px}.program-flow-grid{grid-template-columns:1fr;gap:8px}.attire-img-container{height:190px}.closing-logo-img{width:200px;height:200px}.nav-buttons{bottom:10px;right:10px}.nav-btn{padding:8px 14px;font-size:8px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aldrin & Charm Wedding Invitation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcf8f7;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        h1 {
+            color: #b76e79;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .media-container {
+            margin: 20px 0;
+        }
+        video, audio {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .rsvp-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        button {
+            background-color: #b76e79;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #9d5b64;
+        }
+    </style>
 </head>
-<body oncopy="return false;" oncut="return false;" onclick="initAudioOnInteraction()">
+<body>
 
-<audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
+    <div class="container">
+        <h1>Aldrin & Charm</h1>
+        <p>You are cordially invited to celebrate our wedding day!</p>
+        
+        <div class="media-container">
+            <h3>Our Love Story</h3>
+            <video controls src="story.mp4"></video>
+        </div>
 
-<!-- Access Blocker / Prank Page -->
-<div id="access-blocker">
-    <div class="blocker-card">
-        <h1>IT'S A PRANK!</h1>
-        <div class="verse-box" id="bibleVerseText">"Proverbs 19:5 - A false witness will not go unpunished, and whoever pours out lies will not go free."</div>
-    </div>
-</div>
+        <div class="media-container">
+            <h3>Background Music</h3>
+            <audio controls src="music.mp3"></audio>
+        </div>
 
-<div class="flower-border left"><svg class="botanical" viewBox="0 0 205 1000" preserveAspectRatio="none">
-<path class="stem" d="M48 1000C28 860 77 760 49 640C25 535 79 420 53 290C39 205 70 90 86 0"/><path class="branch" d="M52 700C25 675 18 640 7 605M57 545C100 510 111 460 124 415M55 385C25 360 17 330 8 292M66 240C109 215 130 160 143 105"/>
-<g class="leaf"><ellipse cx="22" cy="655" rx="14" ry="45" transform="rotate(-53 22 655)"/><ellipse cx="92" cy="515" rx="14" ry="47" transform="rotate(58 92 515)"/><ellipse cx="24" cy="350" rx="13" ry="42" transform="rotate(-57 24 350)"/><ellipse cx="116" cy="205" rx="13" ry="46" transform="rotate(55 116 205)"/><ellipse cx="47" cy="820" rx="15" ry="52" transform="rotate(-45 47 820)"/></g><g class="leaf2"><ellipse cx="78" cy="745" rx="10" ry="37" transform="rotate(48 78 745)"/><ellipse cx="36" cy="460" rx="11" ry="39" transform="rotate(-55 36 460)"/><ellipse cx="90" cy="300" rx="10" ry="36" transform="rotate(50 90 300)"/></g>
-<path class="stem" d="M43 630C57 590 48 550 34 505M49 460C61 405 49 365 34 320M69 220C76 165 75 115 62 63"/>
-<path class="tulip" d="M18 515C11 485 19 458 34 445C42 466 51 466 59 445C71 469 69 494 57 514C46 531 29 531 18 515Z"/><path class="tulip-hi" d="M34 451C30 476 36 499 44 514C27 507 24 483 34 451Z"/>
-<path class="tulip" d="M17 326C10 296 19 270 35 257C42 278 51 279 60 258C70 281 68 306 56 325C45 342 28 342 17 326Z"/><path class="tulip-hi" d="M33 263C29 288 35 310 43 324C27 317 23 293 33 263Z"/>
-<path class="tulip" d="M47 70C41 42 50 18 66 5C73 27 83 28 92 7C102 32 98 56 85 73C73 89 57 87 47 70Z"/><path class="tulip-hi" d="M65 11C60 37 65 55 74 70C57 63 55 39 65 11Z"/>
-<g class="tiny"><circle cx="20" cy="590" r="4"/><circle cx="13" cy="608" r="3"/><circle cx="99" cy="435" r="4"/><circle cx="108" cy="417" r="3"/><circle cx="12" cy="245" r="4"/><circle cx="138" cy="150" r="4"/><circle cx="128" cy="132" r="3"/></g>
-</svg></div>
-<div class="flower-border right"><svg class="botanical" viewBox="0 0 205 1000" preserveAspectRatio="none"><use href="#none"/></svg></div>
-<script>document.querySelector('.flower-border.right').innerHTML=document.querySelector('.flower-border.left').innerHTML;document.querySelector('.flower-border.right').firstElementChild.style.transform='scaleX(-1)';</script>
-
-<div id="opening">
-    <div class="curtain"><div class="curtain-side left"></div><div class="curtain-side right"></div></div>
-    <div class="curtain-content">
-        <div class="cover-kicker">Together with their families</div>
-        <div class="cover-names">Aldrin &amp; Charm</div>
-        <div class="cover-sub">request the pleasure of your company</div>
-        <button class="open-btn" onclick="openInvitation()">YOU ARE INVITED&nbsp; · &nbsp;CLICK TO OPEN</button>
-    </div>
-</div>
-
-<div id="pages-container">
-    <div class="page-slide active" data-index="0">
-        <div class="content">
-            <div class="eyebrow">The Beginning of Forever</div>
-            <div class="hero-names">Aldrin &amp; Charm</div>
-            <div class="hero-media-container">
-                <video id="storyVideo" loop playsinline controls><source src="story.mp4" type="video/mp4"></video>
-            </div>
-            <div class="hero-tagline">Two Hearts, One Beautiful Journey</div>
+        <div class="rsvp-section">
+            <h3>RSVP Confirmation</h3>
+            <p>Please let us know if you can make it.</p>
+            <button onclick="sendRSVP('Attending')">Confirm Attendance</button>
         </div>
     </div>
 
-    <div class="page-slide" data-index="1">
-        <div class="content">
-            <div class="eyebrow">Save the date</div>
-            <h1 class="serif" style="font-size:42px;margin:4px">Our Wedding Day</h1>
-            <div class="countdown">
-                <div class="time"><b id="days">0</b><span>Days</span></div>
-                <div class="time"><b id="hours">0</b><span>Hours</span></div>
-                <div class="time"><b id="minutes">0</b><span>Minutes</span></div>
-                <div class="time"><b id="seconds">0</b><span>Seconds</span></div>
-            </div>
-            <div class="info-grid">
-                <div class="info card"><div style="font-size: 20px;">♡</div><h3>Saturday</h3><p>November 21, 2026</p></div>
-                <div class="info card"><div style="font-size: 20px;">◷</div><h3>4:00 PM</h3><p>Ceremony Begins</p></div>
-                <div class="info card">
-                    <div style="font-size: 20px;">⌖</div><h3>The Antonio Event's</h3><p>Salinas, Bacoor, Cavite</p>
-                    <div class="map-buttons">
-                        <a href="https://www.google.com/maps/search/?api=1&query=The+Antonio+Events+Salinas+Bacoor+Cavite" target="_blank" class="map-btn">Map</a>
-                        <a href="https://waze.com/ul?q=The+Antonio+Events+Salinas+Bacoor+Cavite&navigate=yes" target="_blank" class="map-btn waze">Waze</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        // Backend API Base URL
+        const API_URL = 'https://wedding-invitation-vh7t.onrender.com';
 
-    <div class="page-slide" data-index="2">
-        <div class="content">
-            <div class="combined-box card">
-                <div class="eyebrow">Program &amp; Attire Guide</div>
-                <h1 class="serif" style="font-size:40px;margin:4px">Details &amp; Guidelines</h1>
-                <div class="program-flow-grid">
-                    <div class="program-step-col"><div class="program-icon">💍</div><div class="program-time">4:00 PM</div><div class="program-lbl">Ceremony</div></div>
-                    <div class="program-step-col"><div class="program-icon">📷</div><div class="program-time">5:00 PM</div><div class="program-lbl">Photos</div></div>
-                    <div class="program-step-col"><div class="program-icon">🥂</div><div class="program-time">5:30 PM</div><div class="program-lbl">Reception</div></div>
-                    <div class="program-step-col"><div class="program-icon">🍽️</div><div class="program-time">6:00 PM</div><div class="program-lbl">Dinner</div></div>
-                    <div class="program-step-col"><div class="program-icon">🎵</div><div class="program-time">7:00 PM</div><div class="program-lbl">Party Time</div></div>
-                </div>
-                <div class="attire-section-divider">
-                    <div class="eyebrow">Dress Code</div>
-                    <div style="font-size:12px; color:var(--deep); margin:4px 0 8px;">Semi-Formal Attire matching our Dusty Blue motif</div>
-                    <div><span class="no-white-warning">⚠️ STRICTLY NO WEARING WHITE OR BLACK</span></div>
-                    <div class="attire-img-container"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+        // Kunin ang token mula sa URL parameters (halimbawa: ?token=xyz)
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
 
-    <div class="page-slide" data-index="3">
-        <div class="content">
-            <div class="gallery-wrap">
-                <div class="eyebrow">Our memories</div>
-                <h1 class="serif" style="font-size:38px;margin:3px">Photo Album</h1>
-                <div class="main-photo" id="mainPhotoBox">
-                    <div class="main-photo-overlay"><div class="caption" id="caption">Our Beautiful Beginning</div></div>
-                </div>
-                <div class="nav"><button onclick="prevPhoto()">‹</button><button onclick="nextPhoto()">›</button></div>
-                <div class="thumbs" id="thumbs"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-slide" data-index="4">
-        <div class="content">
-            <div class="gift-box card">
-                <div class="eyebrow" style="text-align:center">A Note on Gifts</div>
-                <h2>Registry &amp; Wishes</h2>
-                <div class="gift-desc">
-                    Your presence at our wedding is the greatest gift of all! Because we are still setting up our future home and currently settling in separately, physical gifts can be quite challenging to store and manage. If you wish to bless us with a token of love, a monetary contribution toward our future would be deeply appreciated and practical.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-slide" data-index="5">
-        <div class="content">
-            <div class="rsvp-box card">
-                <div class="eyebrow">Kindly respond</div>
-                <h2>RSVP</h2>
-                <p style="font-size:10px">We would be honored to celebrate this special day with you.</p>
-                <div class="policy"><b>IMPORTANT RSVP POLICY</b><br>Strict adherence to a single guest limit per invitation is strictly implemented to ensure accurate seating arrangement, security control, and compliance with the venue's maximum capacity.</div>
-                
-                <form id="rsvpForm">
-                    <label>Guest name</label>
-                    <input type="text" id="guestName" required placeholder="Enter your full name">
-                    
-                    <label>Email Address (For Calendar & Reminders)</label>
-                    <input type="email" id="guestEmail" required placeholder="Enter your email address">
-
-                    <label>Attendance</label>
-                    <select id="attendance" required>
-                        <option value="">Select response</option>
-                        <option value="Joyfully accepts">Joyfully accepts</option>
-                        <option value="Regretfully declines">Regretfully declines</option>
-                    </select>
-
-                    <label>Number of guests</label>
-                    <select><option>1 Guest</option></select>
-
-                    <label>Message for the couple</label>
-                    <textarea id="message" placeholder="Optional message"></textarea>
-
-                    <button type="submit" class="submit">SUBMIT RSVP</button>
-                </form>
-                
-                <div id="success" class="success">
-                    <h3 class="serif" style="font-size:24px">Thank you!</h3>
-                    <p style="font-size:11px;">Your RSVP has been saved. A calendar invite has also been sent to your email!</p>
-                </div>
-
-                <div class="faq-box">
-                    <div class="faq-question"><span>💬</span> Can I bring someone with me?</div>
-                    <div class="faq-answer">We deeply appreciate your love and support! However, due to strict venue seating capacity limits and careful budget planning for our intimate celebration, we are unable to accommodate plus-ones. Each invitation is strictly reserved for the named guest only. Thank you so much for understanding and respecting our special guidelines! ❤️</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-slide" data-index="6">
-        <div class="content">
-            <div class="closing-box card">
-                <img src="logo.png" alt="Logo" class="closing-logo-img">
-                <div class="closing-title">Thank You!</div>
-                <div class="closing-subtitle">With Love &amp; Gratitude</div>
-                <div class="closing-desc">Thank you so much for being a part of our milestone and sharing this wonderful celebration with us. We are truly blessed to have you in our lives!</div>
-                <div class="closing-contacts">
-                    <div class="closing-company">FlowLogic Cloud Solutions</div>
-                    <div class="closing-info">📞 Contact: 0928.142.4721</div>
-                    <div class="closing-info">🌐 FB: FlowLogic Cloud Solutions</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="nav-buttons" id="navControls" style="display:none;">
-    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Prev</button>
-    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
-</div>
-
-<div class="brand">FL · FlowLogic Cloud Solutions</div>
-
-<script>
-window.addEventListener('DOMContentLoaded', async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-
-    if (!token) {
-        document.getElementById('access-blocker').style.display = 'flex';
-        document.body.style.visibility = 'visible';
-        return;
-    }
-
-    try {
-        // Palitan ang http://localhost:3000 ng iyong Render backend URL kapag naka-deploy na
-        const response = await fetch(`http://localhost:3000/api/verify-guest?token=${token}&ua=${encodeURIComponent(navigator.userAgent)}`);
-        const data = await response.json();
-
-        if (!data.success) {
-            if (data.verse) {
-                document.getElementById('bibleVerseText').innerText = data.verse;
+        // Optional: I-verify ang guest token pagbukas ng page
+        async function verifyGuest() {
+            if (!token) {
+                console.warn('No guest token provided.');
+                return;
             }
-            document.getElementById('access-blocker').style.display = 'flex';
-            document.body.style.visibility = 'visible';
-        } else {
-            document.body.style.visibility = 'visible';
-            const guestNameInput = document.getElementById('guestName');
-            if(guestNameInput && data.guestName) {
-                guestNameInput.value = data.guestName;
+            try {
+                const response = await fetch(`${API_URL}/api/verify?token=${token}`);
+                const data = await response.json();
+                if (!response.ok) {
+                    alert('Invalid or expired link!');
+                    // Pwede mong i-redirect sa prank page kung gusto mo
+                    // window.location.href = 'prank.html';
+                }
+            } catch (err) {
+                console.error('Error verifying guest:', err);
             }
         }
-    } catch (err) {
-        console.error("Connection error:", err);
-        document.body.style.visibility = 'visible';
-    }
-});
 
-let musicStarted = false;
-function initAudioOnInteraction() {
-    if(musicStarted) return;
-    let bgMusic = document.getElementById('bgMusic');
-    if(bgMusic){
-        bgMusic.volume = 0.3; bgMusic.currentTime = 45; 
-        bgMusic.play().then(() => { musicStarted = true; }).catch(e => {});
-    }
-}
+        // Function para sa RSVP submission
+        async function sendRSVP(status) {
+            if (!token) {
+                alert('Missing invitation token.');
+                return;
+            }
 
-let currentSlide = 0;
-const slides = document.querySelectorAll('.page-slide');
+            try {
+                const response = await fetch(`${API_URL}/api/rsvp`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ token, status })
+                });
 
-function openInvitation(){
-    document.getElementById('opening').classList.add('opened');
-    document.getElementById('navControls').style.display = 'flex';
-    let bgMusic = document.getElementById('bgMusic');
-    if(bgMusic && bgMusic.paused){ bgMusic.volume = 0.3; bgMusic.currentTime = 45; bgMusic.play().catch(e => {}); }
-    let vid = document.getElementById('storyVideo');
-    if(vid) vid.play().catch(e => {});
-    setTimeout(()=>{ document.getElementById('opening').style.display='none'; },1800);
-}
-
-function changeSlide(direction) {
-    slides[currentSlide].classList.remove('active');
-    currentSlide += direction;
-    if(currentSlide < 0) currentSlide = 0;
-    if(currentSlide >= slides.length) currentSlide = slides.length - 1;
-    slides[currentSlide].classList.add('active');
-    let vid = document.getElementById('storyVideo');
-    if(vid && currentSlide !== 0) vid.pause();
-    document.getElementById('prevBtn').disabled = (currentSlide === 0);
-    document.getElementById('nextBtn').disabled = (currentSlide === slides.length - 1);
-}
-document.getElementById('prevBtn').disabled = true;
-
-const target = new Date('2026-11-21T16:00:00+08:00').getTime();
-function tick(){
-    let d = target - Date.now();
-    if(d < 0) d = 0;
-    days.textContent = Math.floor(d/86400000);
-    hours.textContent = Math.floor(d%86400000/3600000);
-    minutes.textContent = Math.floor(d%3600000/60000);
-    seconds.textContent = Math.floor(d%60000/1000);
-}
-setInterval(tick, 1000); tick();
-
-const galleryData = [
-    { text: 'Our Beautiful Beginning', url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80' },
-    { text: 'A Moment to Remember', url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&auto=format&fit=crop&q=80' },
-    { text: 'Together Is Our Favorite Place', url: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&auto=format&fit=crop&q=80' },
-    { text: 'Forever Starts Here', url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop&q=80' },
-    { text: 'The Sweetest Memories', url: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&auto=format&fit=crop&q=80' }
-];
-let photoIndex = 0;
-const mainPhotoBox = document.getElementById('mainPhotoBox');
-const captionEl = document.getElementById('caption');
-const thumbsContainer = document.getElementById('thumbs');
-
-galleryData.forEach((item, i)=>{
-    let b = document.createElement('div');
-    b.className = 'thumb' + (i === 0 ? ' active' : '');
-    b.style.backgroundImage = `url('${item.url}')`;
-    b.onclick = () => showPhoto(i);
-    thumbsContainer.appendChild(b);
-});
-function showPhoto(i){
-    photoIndex = (i + galleryData.length) % galleryData.length;
-    mainPhotoBox.style.backgroundImage = `url('${galleryData[photoIndex].url}')`;
-    captionEl.textContent = galleryData[photoIndex].text;
-    document.querySelectorAll('.thumb').forEach((b,n)=>b.classList.toggle('active', n === photoIndex));
-}
-function nextPhoto(){ showPhoto(photoIndex + 1); }
-function prevPhoto(){ showPhoto(photoIndex - 1); }
-setInterval(() => { nextPhoto(); }, 4000);
-showPhoto(0);
-
-const rsvpForm = document.getElementById('rsvpForm');
-rsvpForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-
-    const payload = {
-        token: token,
-        guestName: document.getElementById('guestName').value,
-        guestEmail: document.getElementById('guestEmail').value,
-        attendance: document.getElementById('attendance').value,
-        message: document.getElementById('message').value
-    };
-
-    try {
-        // Palitan ang http://localhost:3000 ng iyong Render backend URL kapag naka-deploy na
-        const response = await fetch('http://localhost:3000/api/rsvp/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-        if (result.success) {
-            rsvpForm.style.display = 'none';
-            document.getElementById('success').style.display = 'block';
-        } else {
-            alert('May error sa pag-submit: ' + (result.error || 'Subukang ulit'));
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Thank you! Your RSVP has been recorded.');
+                } else {
+                    alert(result.message || 'Something went wrong.');
+                }
+            } catch (err) {
+                console.error('RSVP Error:', err);
+                alert('Failed to connect to the server.');
+            }
         }
-    } catch (err) {
-        console.error(err);
-        alert('Hindi makakonekta sa server.');
-    }
-});
-</script>
+
+        // Tawagin ang verification pagka-load ng page
+        verifyGuest();
+    </script>
 </body>
 </html>

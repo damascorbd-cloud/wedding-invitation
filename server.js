@@ -79,7 +79,7 @@ app.get('/admin/generate', (req, res) => {
     `);
 });
 
-// 3. API ENDPOINT (Sinusuportahan na ang POST galing sa iyong Netlify admin.html)
+// 3. API ENDPOINT (Sinusuportahan ang POST galing sa Netlify admin.html)
 app.post('/api/admin/generate-token', async (req, res) => {
     try {
         const { guestName } = req.body;
@@ -91,7 +91,6 @@ app.post('/api/admin/generate-token', async (req, res) => {
         const newGuest = new Guest({ guestName, token });
         await newGuest.save();
 
-        // Nakaturo na sa iyong live Netlify frontend URL
         const frontendUrl = "https://aldringotcharm.netlify.app/"; 
         const uniqueLink = `${frontendUrl}?token=${token}`;
         
@@ -131,7 +130,7 @@ app.get('/api/guest/add', async (req, res) => {
     }
 });
 
-// 4. API ENDPOINT: I-verify ang Token at Device
+// 4. API ENDPOINT: I-verify ang Token at Device (Na may bot protection para sa link previews)
 app.get('/api/verify-guest', async (req, res) => {
     try {
         const { token, ua } = req.query;
@@ -141,7 +140,18 @@ app.get('/api/verify-guest', async (req, res) => {
             return res.json({ success: false });
         }
 
-        if (guest.deviceFingerprint && guest.deviceFingerprint !== ua) {
+        const lowerUA = ua ? ua.toLowerCase() : '';
+        const isBot = lowerUA.includes('externalhit') || lowerUA.includes('facebookexternalhit') || lowerUA.includes('whatsapp') || lowerUA.includes('telegrambot') || lowerUA.includes('twitterbot');
+
+        // Kung bot ang naunang nag-crawl, huwag i-lock ang token para sa totoong bisita
+        if (isBot) {
+            return res.json({ success: true, guestName: guest.guestName });
+        }
+
+        if (!guest.deviceFingerprint) {
+            guest.deviceFingerprint = ua;
+            await guest.save();
+        } else if (guest.deviceFingerprint !== ua) {
             const bibleVerses = [
                 "\"Proverbs 19:5 - A false witness will not go unpunished, and whoever pours out lies will not go free.\"",
                 "\"Proverbs 12:22 - Lying lips are an abomination to the Lord, but those who act faithfully are his delight.\"",
@@ -149,11 +159,6 @@ app.get('/api/verify-guest', async (req, res) => {
             ];
             const randomVerse = bibleVerses[Math.floor(Math.random() * bibleVerses.length)];
             return res.json({ success: false, verse: randomVerse });
-        }
-
-        if (!guest.deviceFingerprint) {
-            guest.deviceFingerprint = ua;
-            await guest.save();
         }
 
         res.json({ success: true, guestName: guest.guestName });

@@ -130,7 +130,7 @@ app.get('/api/guest/add', async (req, res) => {
     }
 });
 
-// 4. API ENDPOINT: I-verify ang Token at Device (Na may bot protection para sa link previews)
+// 4. API ENDPOINT: I-verify ang Token at Device (Mahigpit: Pag iba ang nagbukas o finorward, prank agad)
 app.get('/api/verify-guest', async (req, res) => {
     try {
         const { token, ua } = req.query;
@@ -140,18 +140,15 @@ app.get('/api/verify-guest', async (req, res) => {
             return res.json({ success: false });
         }
 
-        const lowerUA = ua ? ua.toLowerCase() : '';
-        const isBot = lowerUA.includes('externalhit') || lowerUA.includes('facebookexternalhit') || lowerUA.includes('whatsapp') || lowerUA.includes('telegrambot') || lowerUA.includes('twitterbot');
-
-        // Kung bot ang naunang nag-crawl, huwag i-lock ang token para sa totoong bisita
-        if (isBot) {
-            return res.json({ success: true, guestName: guest.guestName });
-        }
-
+        // Kung wala pang nagbubukas, i-lock agad sa unang nagbukas na device
         if (!guest.deviceFingerprint) {
             guest.deviceFingerprint = ua;
             await guest.save();
-        } else if (guest.deviceFingerprint !== ua) {
+            return res.json({ success: true, guestName: guest.guestName });
+        }
+
+        // Kung may nagbukas na pero IBA ang device na ginamit (halimbawa pinerward sa ibang cp), PRANK AGAD!
+        if (guest.deviceFingerprint !== ua) {
             const bibleVerses = [
                 "\"Proverbs 19:5 - A false witness will not go unpunished, and whoever pours out lies will not go free.\"",
                 "\"Proverbs 12:22 - Lying lips are an abomination to the Lord, but those who act faithfully are his delight.\"",
@@ -161,6 +158,7 @@ app.get('/api/verify-guest', async (req, res) => {
             return res.json({ success: false, verse: randomVerse });
         }
 
+        // Kung pareho namang device (ni-refresh o binuksan ulit nung unang may-ari), tuloy-tuloy lang
         res.json({ success: true, guestName: guest.guestName });
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });

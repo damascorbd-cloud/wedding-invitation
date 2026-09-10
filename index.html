@@ -20,28 +20,31 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg-li
 button,input,select,textarea{font:inherit}
 
 #pages-container{position:relative;width:100%;height:100%;overflow:hidden}
-.page-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;visibility:hidden;transition:opacity .6s ease, transform .6s ease;transform:translateY(20px);padding:25px;background:radial-gradient(circle at 50% 20%,#ffffff 0,#f2f6fa 50%,#e1ecf4 100%);overflow-y:auto}
+
+/* PINA-FLEXIBLE AT PINAGANDANG MOBILE CENTERING */
+.page-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;visibility:hidden;transition:opacity .6s ease, transform .6s ease;transform:translateY(20px);padding:15px;background:radial-gradient(circle at 50% 20%,#ffffff 0,#f2f6fa 50%,#e1ecf4 100%);overflow-y:auto}
 .page-slide.active{opacity:1;visibility:visible;transform:translateY(0);z-index:2}
 
-.flower-border{position:fixed;top:0;bottom:0;width:205px;z-index:20;pointer-events:none}.flower-border.left{left:0}.flower-border.right{right:0;transform:scaleX(-1)}.botanical{width:100%;height:100%}.stem{stroke:#6b92a8;stroke-width:2.2;fill:none}.branch{stroke:#8cb0c4;stroke-width:1.4;fill:none}.leaf{fill:#8cb0c4}.leaf2{fill:#b8d1e0}.tulip{fill:#98bace;stroke:#63899e;stroke-width:1}.tulip-hi{fill:#eaf2f7}.tiny{fill:#d6e6f0}
+/* Responsive Botanical Borders para hindi kumain ng espasyo sa mobile */
+.flower-border{position:fixed;top:0;bottom:0;width:150px;z-index:20;pointer-events:none}.flower-border.left{left:0}.flower-border.right{right:0;transform:scaleX(-1)}.botanical{width:100%;height:100%}.stem{stroke:#6b92a8;stroke-width:2.2;fill:none}.branch{stroke:#8cb0c4;stroke-width:1.4;fill:none}.leaf{fill:#8cb0c4}.leaf2{fill:#b8d1e0}.tulip{fill:#98bace;stroke:#63899e;stroke-width:1}.tulip-hi{fill:#eaf2f7}.tiny{fill:#d6e6f0}
 
-.content{position:relative;z-index:2;width:min(950px,calc(100% - 220px));margin:auto}
-.script{font-family:'Great Vibes',cursive;color:var(--dusty-dark);font-size:clamp(45px,6.5vw,85px);line-height:1}
+.content{position:relative;z-index:2;width:min(900px, 100%);margin:auto;padding:10px}
+.script{font-family:'Great Vibes',cursive;color:var(--dusty-dark);font-size:clamp(40px,6vw,85px);line-height:1}
 .serif{font-family:'Cormorant Garamond',serif}
-.eyebrow{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--dusty-dark);margin-bottom:6px}
-.card{background:rgba(255,255,255,0.92);border:1px solid rgba(143,174,194,0.4);box-shadow:0 15px 40px rgba(44,74,92,0.08);backdrop-filter:blur(5px);border-radius:10px}
+.eyebrow{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--dusty-dark);margin-bottom:6px}
+.card{background:rgba(255,255,255,0.94);border:1px solid rgba(143,174,194,0.4);box-shadow:0 10px 30px rgba(44,74,92,0.08);backdrop-filter:blur(5px);border-radius:10px}
 
 /* Navigation Buttons sa kaliwa */
-.nav-buttons{position:fixed;bottom:20px;left:30px;z-index:30;display:flex;gap:10px}
-.nav-btn{background:var(--dusty-blue);color:#fff;border:none;padding:12px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;border-radius:6px;cursor:pointer;box-shadow:0 4px 15px rgba(75,113,138,0.25);transition:.2s}
+.nav-buttons{position:fixed;bottom:20px;left:20px;z-index:30;display:flex;gap:8px}
+.nav-btn{background:var(--dusty-blue);color:#fff;border:none;padding:10px 20px;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:6px;cursor:pointer;box-shadow:0 4px 15px rgba(75,113,138,0.25);transition:.2s}
 .nav-btn:hover{background:var(--dusty-dark);transform:translateY(-2px)}
 .nav-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none}
 
 /* Access Blocker / Prank Page */
 #access-blocker{position:fixed;inset:0;z-index:999;background:#fff5f5;display:none;align-items:center;justify-content:center;padding:20px}
-.blocker-card{background:#fff;padding:50px 40px;border-radius:16px;box-shadow:0 20px 50px rgba(220,38,38,0.15);width:90%;max-width:480px;text-align:center;border:1px solid #fee2e2}
-.blocker-card h1{font-size:clamp(36px, 5vw, 44px);color:#dc2626;margin:0 0 25px;font-weight:700;letter-spacing:1px}
-.verse-box{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.6;background:#f8fafc;padding:20px;border-radius:10px;color:#1f2937;border-left:4px solid #dc2626}
+.blocker-card{background:#fff;padding:40px 30px;border-radius:16px;box-shadow:0 20px 50px rgba(220,38,38,0.15);width:90%;max-width:480px;text-align:center;border:1px solid #fee2e2}
+.blocker-card h1{font-size:clamp(32px, 5vw, 44px);color:#dc2626;margin:0 0 20px;font-weight:700;letter-spacing:1px}
+.verse-box{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;line-height:1.6;background:#f8fafc;padding:18px;border-radius:10px;color:#1f2937;border-left:4px solid #dc2626}
 
 #opening{position:fixed;inset:0;z-index:100;overflow:hidden;background:#8faec2;display:flex;align-items:center;justify-content:center;transition:visibility .2s}
 .curtain{position:absolute;inset:0;display:flex;z-index:2}
@@ -50,71 +53,88 @@ button,input,select,textarea{font:inherit}
 .curtain-side.left{transform-origin:left}.curtain-side.right{transform-origin:right}
 #opening.opened .curtain-side.left{transform:translateX(-101%)}
 #opening.opened .curtain-side.right{transform:translateX(101%)}
-.curtain-content{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);width:85%;text-align:center;color:#fff;text-shadow:0 2px 10px rgba(35,65,85,.3);transition:.6s}
+.curtain-content{position:absolute;z-index:10;left:50%;top:50%;transform:translate(-50%,-50%);width:90%;text-align:center;color:#fff;text-shadow:0 2px 10px rgba(35,65,85,.3);transition:.6s}
 #opening.opened .curtain-content{opacity:0;transform:translate(-50%,-50%) scale(.92);pointer-events:none}
-.cover-kicker{font:clamp(12px, 1.5vw, 16px) Montserrat,sans-serif;letter-spacing:6px;text-transform:uppercase;margin-bottom:15px;color:#f0f6fa}
-.cover-names{font:clamp(65px,8.5vw,120px) 'Great Vibes',cursive;line-height:1;color:#fff}
-.cover-sub{font:clamp(18px,2.2vw,30px) 'Cormorant Garamond',serif;margin-top:18px;color:#eaf2f7}
-.open-btn{margin-top:30px;padding:16px 32px;min-width:280px;background:rgba(255,255,255,.25);border:1px solid #fff;color:#fff;letter-spacing:4px;font:11px Montserrat,sans-serif;cursor:pointer;border-radius:6px}
+.cover-kicker{font:clamp(11px, 1.5vw, 15px) Montserrat,sans-serif;letter-spacing:5px;text-transform:uppercase;margin-bottom:12px;color:#f0f6fa}
+.cover-names{font:clamp(55px,8vw,110px) 'Great Vibes',cursive;line-height:1;color:#fff}
+.cover-sub{font:clamp(16px,2vw,28px) 'Cormorant Garamond',serif;margin-top:15px;color:#eaf2f7}
+.open-btn{margin-top:25px;padding:14px 28px;min-width:250px;background:rgba(255,255,255,.25);border:1px solid #fff;color:#fff;letter-spacing:3px;font:11px Montserrat,sans-serif;cursor:pointer;border-radius:6px}
 .open-btn:hover{background:rgba(255,255,255,.4)}
 
-.hero-media-container{width:100%;max-width:560px;height:320px;margin:12px auto;display:flex;align-items:center;justify-content:center;position:relative;border-radius:10px;overflow:hidden;box-shadow:0 15px 35px rgba(44,74,92,0.2);background:#fff;border:1px solid rgba(143,174,194,0.4)}
+.hero-media-container{width:100%;max-width:500px;height:280px;margin:10px auto;display:flex;align-items:center;justify-content:center;position:relative;border-radius:10px;overflow:hidden;box-shadow:0 12px 30px rgba(44,74,92,0.15);background:#fff;border:1px solid rgba(143,174,194,0.4)}
 .hero-media-container video{width:100%;height:100%;object-fit:cover;border-radius:10px}
-.hero-names{font:clamp(45px,5vw,70px) 'Great Vibes',cursive;color:var(--dusty-dark);line-height:1;margin:4px 0}
-.hero-tagline{letter-spacing:4px;font-size:10px;text-transform:uppercase;color:var(--dusty-dark);margin-top:6px}
+.hero-names{font:clamp(40px,4.5vw,65px) 'Great Vibes',cursive;color:var(--dusty-dark);line-height:1;margin:4px 0}
+.hero-tagline{letter-spacing:3px;font-size:9.5px;text-transform:uppercase;color:var(--dusty-dark);margin-top:5px}
 
-.countdown{display:flex;justify-content:center;margin:15px auto;max-width:650px}.time{min-width:110px;padding:10px;border-right:1px solid #d4e2ec}.time:last-child{border:0}.time b{display:block;font:500 38px 'Cormorant Garamond';color:var(--deep)}.time span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dusty-dark)}
+.countdown{display:flex;justify-content:center;margin:12px auto;max-width:600px}.time{min-width:90px;padding:8px;border-right:1px solid #d4e2ec}.time:last-child{border:0}.time b{display:block;font:500 32px 'Cormorant Garamond';color:var(--deep)}.time span{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--dusty-dark)}
 
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:15px}.info{padding:20px 15px}.info h3{font:500 24px 'Cormorant Garamond';margin:6px 0;color:var(--deep)}.info p{font-size:12px;line-height:1.5;margin:0;color:var(--dusty-dark)}
-.map-buttons{display:flex;justify-content:center;gap:8px;margin-top:10px}
-.map-btn{display:inline-block;padding:6px 14px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--dusty-dark);border-radius:4px;text-decoration:none}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}.info{padding:15px 10px}.info h3{font:500 22px 'Cormorant Garamond';margin:5px 0;color:var(--deep)}.info p{font-size:11.5px;line-height:1.4;margin:0;color:var(--dusty-dark)}
+.map-buttons{display:flex;justify-content:center;gap:6px;margin-top:8px}
+.map-btn{display:inline-block;padding:5px 12px;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:#fff;background:var(--dusty-dark);border-radius:4px;text-decoration:none}
 .map-btn.waze{background:#73c9f4;color:#15354a}
 
-.combined-box{width:min(850px,100%);margin:auto;padding:25px;text-align:center}
-.program-flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:15px 0}
-.program-step-col{background:#eaf2f7;padding:16px 8px;border-radius:8px;border-top:4px solid var(--dusty-blue);box-shadow:0 4px 12px rgba(44,74,92,0.06)}
-.program-icon{font-size:26px;margin-bottom:6px}
-.program-time{font-weight:600;font-size:13px;color:var(--deep)}
-.program-lbl{font-size:10px;text-transform:uppercase;color:var(--dusty-dark);margin-top:4px;letter-spacing:0.5px}
+.combined-box{width:min(800px,100%);margin:auto;padding:20px;text-align:center}
+.program-flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:12px 0}
+.program-step-col{background:#eaf2f7;padding:12px 6px;border-radius:8px;border-top:4px solid var(--dusty-blue);box-shadow:0 4px 10px rgba(44,74,92,0.05)}
+.program-icon{font-size:22px;margin-bottom:4px}
+.program-time{font-weight:600;font-size:12px;color:var(--deep)}
+.program-lbl{font-size:9.5px;text-transform:uppercase;color:var(--dusty-dark);margin-top:3px;letter-spacing:0.5px}
 
-.attire-section-divider{margin:20px 0 10px;border-top:2px dashed rgba(143,174,194,0.6);padding-top:16px}
-.attire-img-container{width:100%;max-width:550px;height:270px;margin:12px auto;background-image:url('attire.jfif');background-size:contain;background-repeat:no-repeat;background-position:center;border-radius:8px;mix-blend-mode:multiply;}
-.no-white-warning{display:inline-block;margin-bottom:8px;padding:6px 16px;background:#fde8e8;color:#c53030;border:1px dashed #f56565;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:1.5px}
+.attire-section-divider{margin:15px 0 8px;border-top:2px dashed rgba(143,174,194,0.6);padding-top:12px}
+.attire-img-container{width:100%;max-width:500px;height:240px;margin:10px auto;background-image:url('attire.jfif');background-size:contain;background-repeat:no-repeat;background-position:center;border-radius:8px;mix-blend-mode:multiply;}
+.no-white-warning{display:inline-block;margin-bottom:6px;padding:5px 14px;background:#fde8e8;color:#c53030;border:1px dashed #f56565;border-radius:6px;font-size:10.5px;font-weight:600;letter-spacing:1px}
 
-.gallery-wrap{width:min(750px,90vw);margin:auto}.main-photo{height:320px;position:relative;overflow:hidden;border-radius:10px;box-shadow:0 12px 30px rgba(44,74,92,0.12);background-size:cover;background-position:center;transition:background-image 0.8s ease-in-out}.main-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(44,74,92,0.6) 0%, transparent 60%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:12px}.caption{color:white;font-size:11px;letter-spacing:2px;text-shadow:0 1px 4px var(--deep)}
-.nav{margin:10px}.nav button{width:32px;height:32px;border:1px solid #b5d0e2;background:#fff;border-radius:50%;cursor:pointer;color:var(--dusty-dark)}.thumbs{display:flex;justify-content:center;gap:6px}.thumb{width:55px;height:36px;border:2px solid transparent;background-size:cover;background-position:center;cursor:pointer;border-radius:4px}.thumb.active{border-color:var(--dusty-blue)}
+.gallery-wrap{width:min(700px,100%);margin:auto}.main-photo{height:280px;position:relative;overflow:hidden;border-radius:10px;box-shadow:0 10px 25px rgba(44,74,92,0.1);background-size:cover;background-position:center;transition:background-image 0.8s ease-in-out}.main-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top, rgba(44,74,92,0.6) 0%, transparent 60%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px}.caption{color:white;font-size:10.5px;letter-spacing:1.5px;text-shadow:0 1px 4px var(--deep)}
+.nav{margin:8px}.nav button{width:30px;height:30px;border:1px solid #b5d0e2;background:#fff;border-radius:50%;cursor:pointer;color:var(--dusty-dark)}.thumbs{display:flex;justify-content:center;gap:5px}.thumb{width:50px;height:32px;border:2px solid transparent;background-size:cover;background-position:center;cursor:pointer;border-radius:4px}.thumb.active{border-color:var(--dusty-blue)}
 
-.gift-box{width:min(650px,100%);margin:auto;padding:25px;text-align:left}
-.gift-box h2{font:500 36px 'Cormorant Garamond';margin:4px 0 10px;color:var(--deep);text-align:center}
-.gift-desc{font-size:15px;line-height:1.8;color:var(--deep);margin-bottom:15px;text-align:center;padding:10px 20px;}
+.gift-box{width:min(600px,100%);margin:auto;padding:20px;text-align:left}
+.gift-box h2{font:500 32px 'Cormorant Garamond';margin:4px 0 8px;color:var(--deep);text-align:center}
+.gift-desc{font-size:14px;line-height:1.7;color:var(--deep);margin-bottom:12px;text-align:center;padding:5px 10px;}
 
-.rsvp-box{width:min(620px,100%);margin:auto;padding:20px}
-.rsvp-box h2{font:500 34px 'Cormorant Garamond';margin:2px;color:var(--deep)}
-.policy{background:#eaf2f7;border-left:3px solid var(--dusty-blue);padding:10px;margin:10px 0;font-size:10px;line-height:1.4;text-align:left}
+.rsvp-box{width:min(580px,100%);margin:auto;padding:15px}
+.rsvp-box h2{font:500 30px 'Cormorant Garamond';margin:2px;color:var(--deep)}
+.policy{background:#eaf2f7;border-left:3px solid var(--dusty-blue);padding:8px 10px;margin:8px 0;font-size:9.5px;line-height:1.4;text-align:left}
 
-.faq-box{background:rgba(244,248,251,0.95);border:1px solid rgba(143,174,194,0.4);padding:14px;border-radius:6px;margin-top:15px;text-align:left}
-.faq-question{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--deep);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.faq-answer{font-family:'Montserrat',sans-serif;font-size:9.5px;line-height:1.5;color:var(--dusty-dark)}
+.faq-box{background:rgba(244,248,251,0.95);border:1px solid rgba(143,174,194,0.4);padding:12px;border-radius:6px;margin-top:12px;text-align:left}
+.faq-question{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--deep);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.faq-answer{font-family:'Montserrat',sans-serif;font-size:9px;line-height:1.4;color:var(--dusty-dark)}
 
-label{display:block;text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin:8px 0 4px;color:var(--deep)}
-input,select,textarea{width:100%;border:1px solid #cbdde8;background:#fff;padding:10px;color:var(--deep);border-radius:4px;font-size:11px}
-textarea{min-height:45px}
-.submit{margin:15px auto 0;display:block;border:0;background:var(--dusty-dark);color:#fff;padding:12px 24px;font-size:10px;letter-spacing:2px;cursor:pointer;border-radius:4px}
-.success{display:none;padding:12px}
+label{display:block;text-align:left;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;margin:6px 0 3px;color:var(--deep)}
+input,select,textarea{width:100%;border:1px solid #cbdde8;background:#fff;padding:8px 10px;color:var(--deep);border-radius:4px;font-size:10.5px}
+textarea{min-height:40px}
+.submit{margin:12px auto 0;display:block;border:0;background:var(--dusty-dark);color:#fff;padding:10px 20px;font-size:9.5px;letter-spacing:2px;cursor:pointer;border-radius:4px}
+.success{display:none;padding:10px}
 
-.closing-box{width:min(700px,100%);margin:auto;padding:25px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.closing-logo-img{width:280px;height:280px;object-fit:contain;background:transparent;margin-bottom:2px}
-.closing-title{font-family:'Great Vibes',cursive;font-size:clamp(45px,6vw,65px);color:var(--dusty-dark);margin:0 0 2px;line-height:1}
-.closing-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,26px);color:var(--deep);margin:0 0 8px;font-weight:600}
-.closing-desc{font-family:'Montserrat',sans-serif;font-size:11px;line-height:1.5;color:var(--dusty-dark);margin-bottom:15px;max-width:480px}
-.closing-contacts{background:#eaf2f7;border:1px dashed var(--dusty-blue);padding:12px 20px;border-radius:10px;width:100%;max-width:420px;text-align:center;box-shadow:0 4px 12px rgba(44,74,92,0.05)}
-.closing-company{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--deep);margin-bottom:4px;letter-spacing:1px}
-.closing-info{font-family:'Montserrat',sans-serif;font-size:11px;color:var(--dusty-dark);margin:4px 0;font-weight:500}
+.closing-box{width:min(650px,100%);margin:auto;padding:20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.closing-logo-img{width:220px;height:220px;object-fit:contain;background:transparent;margin-bottom:2px}
+.closing-title{font-family:'Great Vibes',cursive;font-size:clamp(40px,5.5vw,60px);color:var(--dusty-dark);margin:0 0 2px;line-height:1}
+.closing-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,2.2vw,24px);color:var(--deep);margin:0 0 6px;font-weight:600}
+.closing-desc{font-family:'Montserrat',sans-serif;font-size:10.5px;line-height:1.4;color:var(--dusty-dark);margin-bottom:12px;max-width:450px}
+.closing-contacts{background:#eaf2f7;border:1px dashed var(--dusty-blue);padding:10px 15px;border-radius:8px;width:100%;max-width:380px;text-align:center;box-shadow:0 4px 10px rgba(44,74,92,0.05)}
+.closing-company{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--deep);margin-bottom:3px;letter-spacing:1px}
+.closing-info{font-family:'Montserrat',sans-serif;font-size:10.5px;color:var(--dusty-dark);margin:3px 0;font-weight:500}
 
-/* Nakaposisyon sa pinakataas (katulad ng guhit mo) na may Dusty Blue na kulay */
-.brand{position:fixed;top:12px;right:25px;z-index:40;font-size:10.5px;letter-spacing:2px;color:var(--dusty-blue);font-weight:600;text-transform:uppercase;background:rgba(255,255,255,0.75);backdrop-filter:blur(4px);padding:5px 12px;border-radius:12px;border:1px solid rgba(143,174,194,0.3)}
+/* Brand badge sa mismong itaas nang may Dusty Blue color at ligtas na pwesto sa mobile */
+.brand{position:fixed;top:10px;right:15px;z-index:40;font-size:9.5px;letter-spacing:1.5px;color:var(--dusty-blue);font-weight:600;text-transform:uppercase;background:rgba(255,255,255,0.85);backdrop-filter:blur(4px);padding:4px 10px;border-radius:10px;border:1px solid rgba(143,174,194,0.3)}
 
-@media(max-width:700px){.flower-border{width:75px}.content{width:calc(100% - 70px)}.info-grid{grid-template-columns:1fr;gap:8px}.time{min-width:60px}.time b{font-size:26px}.hero-media-container{height:220px}.main-photo{height:200px}.program-flow-grid{grid-template-columns:1fr;gap:8px}.attire-img-container{height:190px}.closing-logo-img{width:200px;height:200px}.nav-buttons{bottom:10px;left:10px}.nav-btn{padding:8px 14px;font-size:8px}.brand{top:8px;right:10px;font-size:8.5px;padding:4px 8px}}
+/* MOBILE RESPONSIVE MEDIA QUERIES NA NAG-A-ADJUST NG LAHAT NG LAYOUT */
+@media(max-width:768px){
+    .flower-border{width:50px} /* Pinaliit ang border width sa sides para hindi matakpan ang content sa mobile */
+    .content{width:calc(100% - 20px) !important; padding:5px;}
+    .info-grid{grid-template-columns:1fr;gap:8px}
+    .time{min-width:50px;padding:5px}
+    .time b{font-size:22px}
+    .hero-media-container{height:200px; max-width:100%}
+    .main-photo{height:220px}
+    .program-flow-grid{grid-template-columns:1fr;gap:6px}
+    .program-step-col{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;text-align:left}
+    .program-step-col div{margin:0 !important}
+    .attire-img-container{height:170px}
+    .closing-logo-img{width:160px;height:160px}
+    .nav-buttons{bottom:15px;left:15px}
+    .nav-btn{padding:8px 14px;font-size:8px}
+    .brand{top:8px;right:10px;font-size:8px;padding:3px 8px}
+}
 </style>
 </head>
 <body oncopy="return false;" oncut="return false;" onclick="initAudioOnInteraction()">
@@ -168,7 +188,7 @@ textarea{min-height:45px}
     <div class="page-slide" data-index="1">
         <div class="content">
             <div class="eyebrow">Save the date</div>
-            <h1 class="serif" style="font-size:42px;margin:4px">Our Wedding Day</h1>
+            <h1 class="serif" style="font-size:38px;margin:4px">Our Wedding Day</h1>
             <div class="countdown">
                 <div class="time"><b id="days">0</b><span>Days</span></div>
                 <div class="time"><b id="hours">0</b><span>Hours</span></div>
@@ -176,10 +196,10 @@ textarea{min-height:45px}
                 <div class="time"><b id="seconds">0</b><span>Seconds</span></div>
             </div>
             <div class="info-grid">
-                <div class="info card"><div style="font-size: 20px;">♡</div><h3>Saturday</h3><p>November 21, 2026</p></div>
-                <div class="info card"><div style="font-size: 20px;">◷</div><h3>4:00 PM</h3><p>Ceremony Begins</p></div>
+                <div class="info card"><div style="font-size: 18px;">♡</div><h3>Saturday</h3><p>November 21, 2026</p></div>
+                <div class="info card"><div style="font-size: 18px;">◷</div><h3>4:00 PM</h3><p>Ceremony Begins</p></div>
                 <div class="info card">
-                    <div style="font-size: 20px;">⌖</div><h3>The Antonio Event's</h3><p>Salinas, Bacoor, Cavite</p>
+                    <div style="font-size: 18px;">⌖</div><h3>The Antonio Event's</h3><p>Salinas, Bacoor, Cavite</p>
                     <div class="map-buttons">
                         <a href="https://www.google.com/maps/search/?api=1&query=The+Antonio+Events+Salinas+Bacoor+Cavite" target="_blank" class="map-btn">Map</a>
                         <a href="https://waze.com/ul?q=The+Antonio+Events+Salinas+Bacoor+Cavite&navigate=yes" target="_blank" class="map-btn waze">Waze</a>
@@ -193,17 +213,17 @@ textarea{min-height:45px}
         <div class="content">
             <div class="combined-box card">
                 <div class="eyebrow">Program &amp; Attire Guide</div>
-                <h1 class="serif" style="font-size:40px;margin:4px">Details &amp; Guidelines</h1>
+                <h1 class="serif" style="font-size:36px;margin:4px">Details &amp; Guidelines</h1>
                 <div class="program-flow-grid">
-                    <div class="program-step-col"><div class="program-icon">💍</div><div class="program-time">4:00 PM</div><div class="program-lbl">Ceremony</div></div>
-                    <div class="program-step-col"><div class="program-icon">📷</div><div class="program-time">5:00 PM</div><div class="program-lbl">Photos</div></div>
-                    <div class="program-step-col"><div class="program-icon">🥂</div><div class="program-time">5:30 PM</div><div class="program-lbl">Reception</div></div>
-                    <div class="program-step-col"><div class="program-icon">🍽️</div><div class="program-time">6:00 PM</div><div class="program-lbl">Dinner</div></div>
-                    <div class="program-step-col"><div class="program-icon">🎵</div><div class="program-time">7:00 PM</div><div class="program-lbl">Party Time</div></div>
+                    <div class="program-step-col"><div class="program-icon">💍</div><div><div class="program-time">4:00 PM</div><div class="program-lbl">Ceremony</div></div></div>
+                    <div class="program-step-col"><div class="program-icon">📷</div><div><div class="program-time">5:00 PM</div><div class="program-lbl">Photos</div></div></div>
+                    <div class="program-step-col"><div class="program-icon">🥂</div><div><div class="program-time">5:30 PM</div><div class="program-lbl">Reception</div></div></div>
+                    <div class="program-step-col"><div class="program-icon">🍽️</div><div><div class="program-time">6:00 PM</div><div class="program-lbl">Dinner</div></div></div>
+                    <div class="program-step-col"><div class="program-icon">🎵</div><div><div class="program-time">7:00 PM</div><div class="program-lbl">Party Time</div></div></div>
                 </div>
                 <div class="attire-section-divider">
                     <div class="eyebrow">Dress Code</div>
-                    <div style="font-size:12px; color:var(--deep); margin:4px 0 8px;">Semi-Formal Attire matching our Dusty Blue motif</div>
+                    <div style="font-size:11px; color:var(--deep); margin:3px 0 6px;">Semi-Formal Attire matching our Dusty Blue motif</div>
                     <div><span class="no-white-warning">⚠️ STRICTLY NO WEARING WHITE OR BLACK</span></div>
                     <div class="attire-img-container"></div>
                 </div>
@@ -215,7 +235,7 @@ textarea{min-height:45px}
         <div class="content">
             <div class="gallery-wrap">
                 <div class="eyebrow">Our memories</div>
-                <h1 class="serif" style="font-size:38px;margin:3px">Photo Album</h1>
+                <h1 class="serif" style="font-size:36px;margin:3px">Photo Album</h1>
                 <div class="main-photo" id="mainPhotoBox">
                     <div class="main-photo-overlay"><div class="caption" id="caption">Our Beautiful Beginning</div></div>
                 </div>
@@ -242,7 +262,7 @@ textarea{min-height:45px}
             <div class="rsvp-box card">
                 <div class="eyebrow">Kindly respond</div>
                 <h2>RSVP</h2>
-                <p style="font-size:10px">We would be honored to celebrate this special day with you.</p>
+                <p style="font-size:9.5px">We would be honored to celebrate this special day with you.</p>
                 <div class="policy"><b>IMPORTANT RSVP POLICY</b><br>Strict adherence to a single guest limit per invitation is strictly implemented to ensure accurate seating arrangement, security control, and compliance with the venue's maximum capacity.</div>
                 
                 <form id="rsvpForm">
@@ -269,8 +289,8 @@ textarea{min-height:45px}
                 </form>
                 
                 <div id="success" class="success">
-                    <h3 class="serif" style="font-size:24px">Thank you!</h3>
-                    <p style="font-size:11px;">Your RSVP has been saved. A calendar invite has also been sent to your email!</p>
+                    <h3 class="serif" style="font-size:22px">Thank you!</h3>
+                    <p style="font-size:10.5px;">Your RSVP has been saved. A calendar invite has also been sent to your email!</p>
                 </div>
 
                 <div class="faq-box">
@@ -304,7 +324,7 @@ textarea{min-height:45px}
     <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
 </div>
 
-<!-- Developed by FlowLogic Badge (Nasa top-right kung saan mo nilagay ang redline, naka Dusty Blue) -->
+<!-- Developed by FlowLogic Badge -->
 <div class="brand">Developed by FlowLogic Cloud Solutions</div>
 
 <script>

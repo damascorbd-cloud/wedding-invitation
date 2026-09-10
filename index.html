@@ -21,12 +21,9 @@ button,input,select,textarea{font:inherit}
 
 #pages-container{position:relative;width:100%;height:100%;overflow:hidden}
 
-/* PINA-FLEXIBLE AT PINAGANDANG MOBILE CENTERING */
+/* PINA-FLEXIBLE AT PINAGANDANG MOBILE CENTERING (Wala nang flower borders sa gilid) */
 .page-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;opacity:0;visibility:hidden;transition:opacity .6s ease, transform .6s ease;transform:translateY(20px);padding:15px;background:radial-gradient(circle at 50% 20%,#ffffff 0,#f2f6fa 50%,#e1ecf4 100%);overflow-y:auto}
 .page-slide.active{opacity:1;visibility:visible;transform:translateY(0);z-index:2}
-
-/* Responsive Botanical Borders para hindi kumain ng espasyo sa mobile */
-.flower-border{position:fixed;top:0;bottom:0;width:150px;z-index:20;pointer-events:none}.flower-border.left{left:0}.flower-border.right{right:0;transform:scaleX(-1)}.botanical{width:100%;height:100%}.stem{stroke:#6b92a8;stroke-width:2.2;fill:none}.branch{stroke:#8cb0c4;stroke-width:1.4;fill:none}.leaf{fill:#8cb0c4}.leaf2{fill:#b8d1e0}.tulip{fill:#98bace;stroke:#63899e;stroke-width:1}.tulip-hi{fill:#eaf2f7}.tiny{fill:#d6e6f0}
 
 .content{position:relative;z-index:2;width:min(900px, 100%);margin:auto;padding:10px}
 .script{font-family:'Great Vibes',cursive;color:var(--dusty-dark);font-size:clamp(40px,6vw,85px);line-height:1}
@@ -114,12 +111,11 @@ textarea{min-height:40px}
 .closing-company{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--deep);margin-bottom:3px;letter-spacing:1px}
 .closing-info{font-family:'Montserrat',sans-serif;font-size:10.5px;color:var(--dusty-dark);margin:3px 0;font-weight:500}
 
-/* Brand badge sa mismong itaas nang may Dusty Blue color at ligtas na pwesto sa mobile */
+/* Brand badge sa mismong itaas nang may Dusty Blue color */
 .brand{position:fixed;top:10px;right:15px;z-index:40;font-size:9.5px;letter-spacing:1.5px;color:var(--dusty-blue);font-weight:600;text-transform:uppercase;background:rgba(255,255,255,0.85);backdrop-filter:blur(4px);padding:4px 10px;border-radius:10px;border:1px solid rgba(143,174,194,0.3)}
 
-/* MOBILE RESPONSIVE MEDIA QUERIES NA NAG-A-ADJUST NG LAHAT NG LAYOUT */
+/* MOBILE RESPONSIVE MEDIA QUERIES */
 @media(max-width:768px){
-    .flower-border{width:50px} /* Pinaliit ang border width sa sides para hindi matakpan ang content sa mobile */
     .content{width:calc(100% - 20px) !important; padding:5px;}
     .info-grid{grid-template-columns:1fr;gap:8px}
     .time{min-width:50px;padding:5px}
@@ -148,18 +144,6 @@ textarea{min-height:40px}
         <div class="verse-box" id="bibleVerseText">"Proverbs 19:5 - A false witness will not go unpunished, and whoever pours out lies will not go free."</div>
     </div>
 </div>
-
-<div class="flower-border left"><svg class="botanical" viewBox="0 0 205 1000" preserveAspectRatio="none">
-<path class="stem" d="M48 1000C28 860 77 760 49 640C25 535 79 420 53 290C39 205 70 90 86 0"/><path class="branch" d="M52 700C25 675 18 640 7 605M57 545C100 510 111 460 124 415M55 385C25 360 17 330 8 292M66 240C109 215 130 160 143 105"/>
-<g class="leaf"><ellipse cx="22" cy="655" rx="14" ry="45" transform="rotate(-53 22 655)"/><ellipse cx="92" cy="515" rx="14" ry="47" transform="rotate(58 92 515)"/><ellipse cx="24" cy="350" rx="13" ry="42" transform="rotate(-57 24 350)"/><ellipse cx="116" cy="205" rx="13" ry="46" transform="rotate(55 116 205)"/><ellipse cx="47" cy="820" rx="15" ry="52" transform="rotate(-45 47 820)"/></g><g class="leaf2"><ellipse cx="78" cy="745" rx="10" ry="37" transform="rotate(48 78 745)"/><ellipse cx="36" cy="460" rx="11" ry="39" transform="rotate(-55 36 460)"/><ellipse cx="90" cy="300" rx="10" ry="36" transform="rotate(50 90 300)"/></g>
-<path class="stem" d="M43 630C57 590 48 550 34 505M49 460C61 405 49 365 34 320M69 220C76 165 75 115 62 63"/>
-<path class="tulip" d="M18 515C11 485 19 458 34 445C42 466 51 466 59 445C71 469 69 494 57 514C46 531 29 531 18 515Z"/><path class="tulip-hi" d="M34 451C30 476 36 499 44 514C27 507 24 483 34 451Z"/>
-<path class="tulip" d="M17 326C10 296 19 270 35 257C42 278 51 279 60 258C70 281 68 306 56 325C45 342 28 342 17 326Z"/><path class="tulip-hi" d="M33 263C29 288 35 310 43 324C27 317 23 293 33 263Z"/>
-<path class="tulip" d="M47 70C41 42 50 18 66 5C73 27 83 28 92 7C102 32 98 56 85 73C73 89 57 87 47 70Z"/><path class="tulip-hi" d="M65 11C60 37 65 55 74 70C57 63 55 39 65 11Z"/>
-<g class="tiny"><circle cx="20" cy="590" r="4"/><circle cx="13" cy="608" r="3"/><circle cx="99" cy="435" r="4"/><circle cx="108" cy="417" r="3"/><circle cx="12" cy="245" r="4"/><circle cx="138" cy="150" r="4"/><circle cx="128" cy="132" r="3"/></g>
-</svg></div>
-<div class="flower-border right"><svg class="botanical" viewBox="0 0 205 1000" preserveAspectRatio="none"><use href="#none"/></svg></div>
-<script>document.querySelector('.flower-border.right').innerHTML=document.querySelector('.flower-border.left').innerHTML;document.querySelector('.flower-border.right').firstElementChild.style.transform='scaleX(-1)';</script>
 
 <!-- Curtain Opening Layer -->
 <div id="opening">
